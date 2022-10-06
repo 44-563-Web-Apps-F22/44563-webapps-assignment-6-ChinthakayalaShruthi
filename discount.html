@@ -54,7 +54,24 @@
             }
             document.getElementById("result").innerHTML = "Discounted amounts for base " + base + " are " + result;
         }
-        
+        function chooseOp() {
+            let results = 0;
+            let base = document.getElementById("base").value;
+            let discount = document.getElementById("discounts").value;
+            let times = document.getElementById("first").checked;
+            let divide = document.getElementById("second").checked;
+            let exponent = document.getElementById("third").checked;
+            if (times) {
+                results = base * discount;
+            }
+            else if (divide) {
+                results = base / discount;
+            }
+            else if (exponent) {
+                results = base ** discount
+            }
+            document.getElementById("result2").innerHTML = results
+        }
     </script>
 </body>
 </html>
