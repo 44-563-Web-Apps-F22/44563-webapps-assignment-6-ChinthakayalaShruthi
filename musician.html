@@ -4,56 +4,79 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+    crossorigin="anonymous"></script>
     <title>Music</title>
 </head>
  <body>
     <h1>Musician guess by Shruthi Chinthakayala</h1>
+<form  style="width: 250px;">
+    <div class="form-check">
+        <label for="form1_age" class="form-label">Enter the secret musician name</label>
+        <input type="password" class="form-control" id="form1_age" name="form1_age" min=10 max=50 step=2
+            value="John Lennon" aria-describedby="emailHelp">
 
-<h2>Getting input</h2>
-<form>
-    <label for="form1_age">Enter the secret musician name</label>
-    <input type="password" id="form1_age" name="form1_age" min=10 max=50 step=2 value="John Lennon"> <br>
+    </div>
 
-    <label for="form1_nick">Guess the musician </label>
-    <input type="text" id="form1_nick" name="form1_nick" autofocus> <br>
-
-    <input type="button" onclick="checkGuess()" value="Check the guess">
+    <div class="form-check">
+        <label for="form1_nick" class="form-label">Guess the musician</label>
+        <input type="text" class="form-control" id="form1_nick" name="form1_nick" autofocus>
+    </div><br>
+    <div class="form-check">
+        <button type="button" class="btn btn-warning" onclick="checkGuess()" value="Check the guess">Submit</button>
+    </div> <br>
+    <div class="form-check">
+        <p id="result">result will be shown here!</p>
+    </div>
 </form>
-<p id="result">This text will be replaced </p>
+<br>
 <div class="container">
     <img src="bee.jpg" id="image" onclick="swapImage()" alt="Bee" style="width: 100px;height: 100px;">
 </div>
 <script> 
-correct = 0
-wrong = 0
-useImage = 1
-function checkGuess ()
-{
-    console.log("Getting form values")
-    age = document.getElementById("form1_age").value
-    nick = document.getElementById("form1_nick").value
-    confirmed = confirm("Are these the values? "+age+" and "+nick)   
-    out = document.getElementById("result")
-    if(age==nick){     
-        alert("You got it right")
-        correct = correct+1
-        out.innerHTML = "Correct answer: "+ correct +" Wrong answer: "+ wrong
-    } else {
-        wrong = wrong + 1        
-        alert("Wrong Musician")
-        out.innerHTML = "Correct answer: "+ correct +" Wrong answer: "+ wrong
-    }
-}
-function swapImage() {
-            switch (useImage) {
-                case 1: useImage = useImage + 1
-                    image.src = "fly.png";
+crt = 0
+        let wrng = 0
+        img = 1
+        function giveAlert() {
+            alert("Sorry, game over");
+        }
+        function checkGuess() {
+            console.log("Getting form values")
+            age = document.getElementById("form1_age").value
+            nick = document.getElementById("form1_nick").value
+            confirmed = confirm("Are these the values? " + age + " and " + nick)
+            out = document.getElementById("result")
+            if (age == nick) {
+                alert("You got it right")
+                crt = crt + 1
+                out.innerHTML = "Correct: " + crt + " Wrong:" + wrng;
+            } else if (wrng >= 3) {
+                document.getElementById("btn").onclick = giveAlert();            
+                out.innerHTML = "Correct: " + crt + " Wrong: " + wrng;
+            }
+            else {
+                alert("wrng Musician");
+                wrng = wrng + 1
+                out.innerHTML = "Correct : " + crt + " Wrong : " + wrng;
+            }
+        }
+        function swapImage() 
+        {
+            switch (img) {
+                case 1: img = img + 1
+                    image.src = "Harvesterant.png";
                     break;
-                case 2: useImage = useImage + 1
-                    image.src = "inchworm.jpg";
+                case 2: img = img + 1
+                    image.src = "Waterbeetle.jpg";
                     break;
-                case 3: useImage = useImage + 1
-                    image.src = "bee.jpg";
+                case 3: img = img + 1
+                    image.src = "Viceroy.jpg";
                     break;
             }
         }
